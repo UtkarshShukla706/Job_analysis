@@ -44,3 +44,5 @@ WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 \copy skills_job_dim
 FROM '/Users/Acer/Job_analysis/csv_files/skills_job_dim.csv'
 WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+
+SELECT * FROM skills_job_dim LIMIT 10;

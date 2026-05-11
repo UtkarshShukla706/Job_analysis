@@ -17,7 +17,7 @@ WITH top_paying_jobs AS (
         AND job_location = 'Anywhere'
         AND salary_year_avg is not NULL
     ORDER BY salary_year_avg DESC
-    LIMIT 10
+    
 )
 
 SELECT 
