@@ -19,4 +19,4 @@ GROUP BY
     job_title_short,
     name
 ORDER BY avg_salary DESC
-LIMIT 20;
+;
