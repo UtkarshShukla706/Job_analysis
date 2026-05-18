@@ -4,7 +4,7 @@ import plotly.express as px
 
 # ─── Page Config ─────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Global Job Market Intelligence",
+    page_title="The State of Hiring",
     page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -174,7 +174,7 @@ comp_filtered = companies[companies["Job Name"].isin(selected_roles)]
 # PAGE 1 — OVERVIEW
 # ─────────────────────────────────────────────────────────────────────────────
 if page == "Overview":
-    st.markdown('<div class="page-title">Global Job Market Intelligence</div>', unsafe_allow_html=True)
+    st.markdown('<div class="page-title">The State of Hiring</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Worldwide data jobs analysis — salary, demand, skills & trends</div>', unsafe_allow_html=True)
 
     # KPI Cards
