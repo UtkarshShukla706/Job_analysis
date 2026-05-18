@@ -1,0 +1,41 @@
+Job Name,Total Demand,Skills,AVG Salary,Rank By Salary
+Data Analyst,40,kafka,129999,1
+Data Analyst,20,pytorch,125226,2
+Data Analyst,20,perl,124686,3
+Data Analyst,24,tensorflow,120647,4
+Data Analyst,11,cassandra,118407,5
+Data Analyst,15,atlassian,117966,6
+Data Analyst,71,airflow,116387,7
+Data Analyst,59,scala,115480,8
+Data Analyst,58,linux,114883,9
+Data Analyst,62,confluence,114153,10
+Data Engineer,29,node,181862,1
+Data Engineer,120,mongo,179403,2
+Data Engineer,269,cassandra,150255,3
+Data Engineer,15,rust,147771,4
+Data Engineer,39,perl,145540,5
+Data Engineer,42,angular,143319,6
+Data Engineer,794,scala,143161,7
+Data Engineer,872,kafka,143086,8
+Data Engineer,38,gdpr,142369,9
+Data Engineer,365,shell,141725,10
+Data Scientist,14,watson,187417,1
+Data Scientist,17,slack,168219,2
+Data Scientist,17,rshiny,166436,3
+Data Scientist,11,notion,165636,4
+Data Scientist,32,neo4j,163971,5
+Data Scientist,16,dplyr,163111,6
+Data Scientist,18,hugging face,160868,7
+Data Scientist,12,dynamodb,160581,8
+Data Scientist,144,airflow,155878,9
+Data Scientist,25,theano,153133,10
+Machine Learning Engineer,12,golang,164492,1
+Machine Learning Engineer,24,excel,159622,2
+Machine Learning Engineer,40,scala,157451,3
+Machine Learning Engineer,11,typescript,149684,4
+Machine Learning Engineer,54,airflow,144821,5
+Machine Learning Engineer,16,bigquery,143461,6
+Machine Learning Engineer,19,c,142345,7
+Machine Learning Engineer,40,hadoop,139614,8
+Machine Learning Engineer,113,spark,138904,9
+Machine Learning Engineer,15,snowflake,137981,10
