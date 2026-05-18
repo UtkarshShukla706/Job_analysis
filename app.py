@@ -5,7 +5,7 @@ import plotly.express as px
 # ─── Page Config ─────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="Global Job Market Intelligence",
-    page_icon="📊",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -123,16 +123,16 @@ def dark_layout(**kwargs):
 
 # ─── Sidebar ─────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("## 📊 Job Market Intel")
+    st.markdown("## Job Market Intel")
     st.markdown("---")
 
     page = st.selectbox(
-        "📄 Navigate to",
-        ["🏠 Overview", "💰 Salary Analysis", "🛠️ Skills Analysis", "📈 Trends", "🏢 Companies"]
+        "Navigate to",
+        ["Overview", "Salary Analysis", "Skills Analysis", "Trends", "Companies", "Salary Predictor"]
     )
 
     st.markdown("---")
-    st.markdown("### 🎯 Filter by Role")
+    st.markdown("### Filter by Role")
     all_roles = sorted(job_demand["job_title_short"].tolist())
     selected_roles = st.multiselect(
         "Select Job Roles",
@@ -141,7 +141,7 @@ with st.sidebar:
     )
 
     st.markdown("---")
-    st.markdown("### 💰 Filter by Avg Salary")
+    st.markdown("### Filter by Avg Salary")
     sal_min = int(job_demand["avg_salary"].min())
     sal_max = int(job_demand["avg_salary"].max())
     salary_range = st.slider(
@@ -173,8 +173,8 @@ comp_filtered = companies[companies["Job Name"].isin(selected_roles)]
 # ─────────────────────────────────────────────────────────────────────────────
 # PAGE 1 — OVERVIEW
 # ─────────────────────────────────────────────────────────────────────────────
-if page == "🏠 Overview":
-    st.markdown('<div class="page-title">🌍 Global Job Market Intelligence</div>', unsafe_allow_html=True)
+if page == "Overview":
+    st.markdown('<div class="page-title">Global Job Market Intelligence</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Worldwide data jobs analysis — salary, demand, skills & trends</div>', unsafe_allow_html=True)
 
     # KPI Cards
@@ -186,25 +186,25 @@ if page == "🏠 Overview":
 
     with c1:
         st.markdown(f"""<div class="metric-card">
-            <div class="metric-label">📋 Total Job Postings</div>
+            <div class="metric-label">Total Job Postings</div>
             <div class="metric-value">{total_jobs:,}</div>
             <div class="metric-sub">Filtered selection</div>
         </div>""", unsafe_allow_html=True)
     with c2:
         st.markdown(f"""<div class="metric-card">
-            <div class="metric-label">💰 Avg Market Salary</div>
+            <div class="metric-label">Avg Market Salary</div>
             <div class="metric-value">${avg_sal:,}</div>
             <div class="metric-sub">Across selected roles</div>
         </div>""", unsafe_allow_html=True)
     with c3:
         st.markdown(f"""<div class="metric-card">
-            <div class="metric-label">🏆 Highest Paying Role</div>
+            <div class="metric-label">Highest Paying Role</div>
             <div class="metric-value" style="font-size:18px;">{top_role}</div>
             <div class="metric-sub">${top_sal:,} avg salary</div>
         </div>""", unsafe_allow_html=True)
     with c4:
         st.markdown(f"""<div class="metric-card">
-            <div class="metric-label">📅 Data Period</div>
+            <div class="metric-label">Data Period</div>
             <div class="metric-value" style="font-size:20px;">2023</div>
             <div class="metric-sub">Jan 2023 — Dec 2023</div>
         </div>""", unsafe_allow_html=True)
@@ -213,7 +213,7 @@ if page == "🏠 Overview":
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown('<div class="section-header">📊 Job Roles — Demand vs Salary</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">Job Roles — Demand vs Salary</div>', unsafe_allow_html=True)
         if job_filtered.empty:
             st.warning("No data for selected filters.")
         else:
@@ -228,10 +228,10 @@ if page == "🏠 Overview":
                     title_font=dict(color="#F1F5F9"))
             ))
             st.plotly_chart(fig, use_container_width=True)
-        st.markdown('<div class="insight-box">💡 Senior Data Scientist pays the most ($154k avg). Data Analyst has the highest demand (9,756 jobs).</div>', unsafe_allow_html=True)
+        st.markdown('<div class="insight-box">Senior Data Scientist pays the most ($154k avg). Data Analyst has the highest demand (9,756 jobs).</div>', unsafe_allow_html=True)
 
     with col2:
-        st.markdown('<div class="section-header">📈 Monthly Hiring Trend</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">Monthly Hiring Trend</div>', unsafe_allow_html=True)
         fig2 = px.line(trend, x="Periods", y="Total Jobs",
                        markers=True, line_shape="spline",
                        color_discrete_sequence=["#2E86AB"])
@@ -240,16 +240,16 @@ if page == "🏠 Overview":
         ))
         fig2.update_traces(line=dict(width=3), marker=dict(size=8))
         st.plotly_chart(fig2, use_container_width=True)
-        st.markdown('<div class="insight-box">💡 Jan & Jun 2023 had peak hiring. Sharp drop from Sep 2023 onwards.</div>', unsafe_allow_html=True)
+        st.markdown('<div class="insight-box">Jan & Jun 2023 had peak hiring. Sharp drop from Sep 2023 onwards.</div>', unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PAGE 2 — SALARY ANALYSIS
 # ─────────────────────────────────────────────────────────────────────────────
-elif page == "💰 Salary Analysis":
-    st.markdown('<div class="page-title">💰 Salary Analysis</div>', unsafe_allow_html=True)
+elif page == "Salary Analysis":
+    st.markdown('<div class="page-title">Salary Analysis</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Deep dive into salary distributions across roles and work types</div>', unsafe_allow_html=True)
 
-    st.markdown('<div class="section-header">🏠 Remote vs Onsite Salary Comparison</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Remote vs Onsite Salary Comparison</div>', unsafe_allow_html=True)
     if rem_filtered.empty:
         st.warning("No data for selected filters.")
     else:
@@ -262,11 +262,11 @@ elif page == "💰 Salary Analysis":
             margin=dict(l=10, r=10, t=20, b=100)
         ))
         st.plotly_chart(fig, use_container_width=True)
-    st.markdown('<div class="insight-box">💡 Cloud Engineer gets highest remote premium (+$41k). Only Senior Data Analyst pays slightly more onsite.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="insight-box">Cloud Engineer gets highest remote premium (+$41k). Only Senior Data Analyst pays slightly more onsite.</div>', unsafe_allow_html=True)
 
     st.markdown("---")
 
-    st.markdown('<div class="section-header">📊 Salary Percentile by Job Role (P25 / P50 / P75 / P90)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Salary Percentile by Job Role (P25 / P50 / P75 / P90)</div>', unsafe_allow_html=True)
     if sal_filtered.empty:
         st.warning("No data for selected filters.")
     else:
@@ -282,19 +282,19 @@ elif page == "💰 Salary Analysis":
             margin=dict(l=10, r=10, t=20, b=100)
         ))
         st.plotly_chart(fig2, use_container_width=True)
-    st.markdown('<div class="insight-box">💡 Senior roles have P25 above $125k. ML Engineer has the biggest salary gap — experience matters most here.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="insight-box">Senior roles have P25 above $125k. ML Engineer has the biggest salary gap — experience matters most here.</div>', unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PAGE 3 — SKILLS ANALYSIS
 # ─────────────────────────────────────────────────────────────────────────────
-elif page == "🛠️ Skills Analysis":
-    st.markdown('<div class="page-title">🛠️ Skills Analysis</div>', unsafe_allow_html=True)
+elif page == "Skills Analysis":
+    st.markdown('<div class="page-title">Skills Analysis</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Which skills pay the most and are in highest demand?</div>', unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown('<div class="section-header">💎 Top Paying Skills</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">Top Paying Skills</div>', unsafe_allow_html=True)
         df_s = top_skills.sort_values("avg_salary", ascending=True)
         fig = px.bar(df_s, x="avg_salary", y="skills", orientation="h",
                      color="avg_salary", color_continuous_scale="Teal",
@@ -307,10 +307,10 @@ elif page == "🛠️ Skills Analysis":
                 title_font=dict(color="#F1F5F9"))
         ))
         st.plotly_chart(fig, use_container_width=True)
-        st.markdown('<div class="insight-box">💡 SVN ($400k) and Solidity ($179k) pay the most — niche skills command premium salaries.</div>', unsafe_allow_html=True)
+        st.markdown('<div class="insight-box">SVN ($400k) and Solidity ($179k) pay the most — niche skills command premium salaries.</div>', unsafe_allow_html=True)
 
     with col2:
-        st.markdown('<div class="section-header">🔧 Skill Type — Demand vs Salary</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">Skill Type — Demand vs Salary</div>', unsafe_allow_html=True)
         df_t = skill_type.sort_values("avg_salary", ascending=True)
         fig2 = px.bar(df_t, x="avg_salary", y="skill_type", orientation="h",
                       color="total_jobs", color_continuous_scale="Blues",
@@ -324,19 +324,19 @@ elif page == "🛠️ Skills Analysis":
                 title_font=dict(color="#F1F5F9"))
         ))
         st.plotly_chart(fig2, use_container_width=True)
-        st.markdown('<div class="insight-box">💡 Libraries (AI/ML) pay most ($139k). Programming has highest demand (47k jobs) but average salary.</div>', unsafe_allow_html=True)
+        st.markdown('<div class="insight-box">Libraries (AI/ML) pay most ($139k). Programming has highest demand (47k jobs) but average salary.</div>', unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PAGE 4 — TRENDS
 # ─────────────────────────────────────────────────────────────────────────────
-elif page == "📈 Trends":
-    st.markdown('<div class="page-title">📈 Hiring Trends</div>', unsafe_allow_html=True)
+elif page == "Trends":
+    st.markdown('<div class="page-title">Hiring Trends</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Monthly hiring patterns and salary trends across 2023</div>', unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown('<div class="section-header">📅 Total Jobs by Month</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">Total Jobs by Month</div>', unsafe_allow_html=True)
         fig = px.line(trend, x="Periods", y="Total Jobs",
                       markers=True, line_shape="spline",
                       color_discrete_sequence=["#2E86AB"])
@@ -347,7 +347,7 @@ elif page == "📈 Trends":
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
-        st.markdown('<div class="section-header">💰 Avg Salary by Month</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">Avg Salary by Month</div>', unsafe_allow_html=True)
         fig2 = px.line(trend, x="Periods", y="AVG Salary",
                        markers=True, line_shape="spline",
                        color_discrete_sequence=["#E84855"])
@@ -357,10 +357,10 @@ elif page == "📈 Trends":
         fig2.update_traces(line=dict(width=3), marker=dict(size=8))
         st.plotly_chart(fig2, use_container_width=True)
 
-    st.markdown('<div class="insight-box">💡 Jan & Jun 2023 had peak hiring. Salary stayed stable (~$120k-$125k) throughout the year despite job count dropping sharply in H2 2023.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="insight-box">Jan & Jun 2023 had peak hiring. Salary stayed stable (~$120k-$125k) throughout the year despite job count dropping sharply in H2 2023.</div>', unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown('<div class="section-header">📊 Jobs Distribution by Month</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Jobs Distribution by Month</div>', unsafe_allow_html=True)
     fig3 = px.bar(trend, x="Periods", y="Total Jobs",
                   color="Total Jobs", color_continuous_scale="Teal")
     fig3.update_layout(**dark_layout(
@@ -375,11 +375,11 @@ elif page == "📈 Trends":
 # ─────────────────────────────────────────────────────────────────────────────
 # PAGE 5 — COMPANIES
 # ─────────────────────────────────────────────────────────────────────────────
-elif page == "🏢 Companies":
-    st.markdown('<div class="page-title">🏢 Top Paying Companies</div>', unsafe_allow_html=True)
+elif page == "Companies":
+    st.markdown('<div class="page-title">Top Paying Companies</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Which companies pay the most for data roles?</div>', unsafe_allow_html=True)
 
-    st.markdown('<div class="section-header">🏆 Top Companies by Role & Salary</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Top Companies by Role & Salary</div>', unsafe_allow_html=True)
     if comp_filtered.empty:
         st.warning("No data for selected filters.")
     else:
@@ -394,11 +394,79 @@ elif page == "🏢 Companies":
             margin=dict(l=250, r=10, t=20, b=10), height=600
         ))
         st.plotly_chart(fig, use_container_width=True)
-    st.markdown('<div class="insight-box">💡 Algo Capital Group and Anthropic are among top payers. Anthropic pays $295k for Data Analyst roles!</div>', unsafe_allow_html=True)
+    st.markdown('<div class="insight-box">Algo Capital Group and Anthropic are among top payers. Anthropic pays $295k for Data Analyst roles!</div>', unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown('<div class="section-header">📋 Top 10 Highest Paying Jobs</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Top 10 Highest Paying Jobs</div>', unsafe_allow_html=True)
     df_j = top_jobs[["Job", "Name of Company", "AVG Salary", "Schedule"]].copy()
     df_j["AVG Salary"] = df_j["AVG Salary"].apply(lambda x: f"${x:,.0f}")
     df_j.columns = ["Job Title", "Company", "Avg Salary", "Schedule"]
     st.dataframe(df_j, use_container_width=True, hide_index=True)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PAGE 6 — SALARY PREDICTOR
+# ─────────────────────────────────────────────────────────────────────────────
+elif page == "Salary Predictor":
+    import joblib
+    import numpy as np
+
+    st.markdown('<div class="page-title">Salary Predictor</div>', unsafe_allow_html=True)
+    st.markdown('<div class="page-subtitle">Predict your expected salary based on role, location & preferences</div>', unsafe_allow_html=True)
+
+    # Load models
+    rf_model    = joblib.load('models/salary_model.pkl')
+    le_role     = joblib.load('models/le_role.pkl')
+    le_country  = joblib.load('models/le_country.pkl')
+    le_schedule = joblib.load('models/le_schedule.pkl')
+
+    st.markdown("---")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown('<div class="section-header">Your Profile</div>', unsafe_allow_html=True)
+
+        role      = st.selectbox("Job Role", sorted(le_role.classes_))
+        country   = st.selectbox("Country", sorted(le_country.classes_))
+        schedule  = st.selectbox("Job Type", sorted([str(x) for x in le_schedule.classes_]))
+        remote    = st.radio("Work Type", ["Remote", "Onsite"])
+        degree    = st.radio("Degree Required", ["Not Required", "Required"])
+        insurance = st.radio("Health Insurance", ["Yes", "No"])
+
+    with col2:
+        st.markdown('<div class="section-header">Predicted Salary</div>', unsafe_allow_html=True)
+
+        # Encode inputs
+        role_enc      = le_role.transform([role])[0]
+        country_enc   = le_country.transform([country])[0]
+        schedule_enc  = le_schedule.transform([schedule])[0]
+        remote_val    = 1 if remote == "Remote" else 0
+        degree_val    = 1 if degree == "Not Required" else 0
+        insurance_val = 1 if insurance == "Yes" else 0
+
+        features = np.array([[
+            role_enc, country_enc, remote_val,
+            degree_val, insurance_val, schedule_enc
+        ]])
+
+        predicted = rf_model.predict(features)[0]
+        lower     = predicted * 0.85
+        upper     = predicted * 1.15
+
+        st.markdown(f"""
+        <div class="metric-card" style="margin-top:2rem;">
+            <div class="metric-label">Predicted Salary</div>
+            <div class="metric-value">${predicted:,.0f}</div>
+            <div class="metric-sub">Range: ${lower:,.0f} — ${upper:,.0f}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown(f"""
+        <div class="metric-card">
+            <div class="metric-label">Model Info</div>
+            <div class="metric-value" style="font-size:16px;">Random Forest</div>
+            <div class="metric-sub">R²: 0.208 · MAE: $31,323</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown('<div class="insight-box">Prediction based on 787k+ worldwide job postings. Salary may vary based on experience and company size.</div>', unsafe_allow_html=True)
